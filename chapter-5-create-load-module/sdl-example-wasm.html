@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Wasm Only</title>
+  </head>
+  <body>
+    <h1>Using Wasm Only</h1>
+    <canvas id="canvas"></canvas>
+    <script type="module">
+      import loadWasm from '../common/load-wasm.js';
+
+      loadWasm('./sdl-example.wasm')
+        .then(instance => {
+          console.log(instance);
+        });
+    </script>
+  </body>
+</html>

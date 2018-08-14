@@ -1,0 +1,16 @@
+{
+  "name": "tetris",
+  "version": "1.0.0",
+  "description": "WebAssembly implementation of Tetris.",
+  "main": "index.js",
+  "author": "Mike Rourke",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "browser-sync start --server 'public' --files 'public' --single --port 5000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.24.6"
+  }
+}

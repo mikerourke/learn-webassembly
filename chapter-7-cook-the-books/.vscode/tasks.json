@@ -1,0 +1,31 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "${workspaceFolder}/lib/main.c",
+        "-Os",
+        "-s",
+        "WASM=1",
+        "-s",
+        "SIDE_MODULE=1",
+        "-s",
+        "BINARYEN_ASYNC_COMPILATION=0",
+        "-o",
+        "${workspaceFolder}/src/assets/main.wasm"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "panel": "new"
+      }
+    }
+  ]
+}

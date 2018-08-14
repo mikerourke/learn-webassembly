@@ -1,0 +1,35 @@
+// Place your settings in this file to overwrite the default settings
+{
+  "editor.fontFamily": "Roboto Mono",
+  "editor.fontSize": 14,
+  "editor.lineHeight": 24,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.lineHeight": 1.4,
+  "editor.fontWeight": "400",
+  "javascript.validate.enable": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Atom One Light",
+  "terminal.integrated.fontFamily": "Roboto Mono",
+  "files.insertFinalNewline": true,
+  "files.associations": {
+    "sdl.h": "c",
+    "__bit_reference": "c",
+    "deque": "c",
+    "memory": "c",
+    "type_traits": "c",
+    "stdbool.h": "c",
+    "__functional_base": "c",
+    "atomic": "c",
+    "bitset": "c",
+    "chrono": "c",
+    "functional": "c",
+    "iterator": "c",
+    "limits": "c",
+    "locale": "c",
+    "ratio": "c",
+    "system_error": "c",
+    "tuple": "c",
+    "vector": "c",
+    "__locale": "c"
+  }
+}
