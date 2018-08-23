@@ -28,7 +28,7 @@
         },
       };
 
-      loadWasm('./no-glue.wasm', { env }).then(({ instance }) => {
+      loadWasm('./without-glue.wasm', { env }).then(({ instance }) => {
         const m = instance.exports;
         m._init();
 
@@ -36,7 +36,7 @@
         const loopRectMotion = () => {
           setTimeout(() => {
             m._moveRect();
-            if (m._getIsRunning()) loopRectMotion();        
+            if (m._getIsRunning()) loopRectMotion();
           }, 20)
         };
 
@@ -48,7 +48,7 @@
             e.target.innerHTML = newIsRunning ? 'Pause' : 'Start';
             if (newIsRunning) loopRectMotion();
           });
-        
+
         loopRectMotion();
       });
     </script>

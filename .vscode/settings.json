@@ -12,6 +12,7 @@
   "terminal.integrated.fontFamily": "Roboto Mono",
   "files.insertFinalNewline": true,
   "files.associations": {
+    "*.def": "vba",
     "sdl.h": "c",
     "__bit_reference": "c",
     "deque": "c",
@@ -30,6 +31,7 @@
     "system_error": "c",
     "tuple": "c",
     "vector": "c",
-    "__locale": "c"
+    "__locale": "c",
+    "ios": "c"
   }
 }

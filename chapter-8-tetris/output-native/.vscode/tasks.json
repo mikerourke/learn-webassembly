@@ -1,0 +1,97 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Remove Build Folder",
+      "type": "shell",
+      "command": "rm",
+      "args": ["-rf", "./build"],
+      "options": {
+        "cwd": "${workspaceRoot}"
+      }
+    },
+    {
+      "label": "Create Build Folder",
+      "type": "shell",
+      "command": "mkdir",
+      "args": ["./build"],
+      "dependsOn": ["Remove Build Folder"],
+      "options": {
+        "cwd": "${workspaceRoot}"
+      }
+    },
+    {
+      "label": "CMake Config",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["./", "-Bbuild"],
+      "dependsOn": ["Create Build Folder"],
+      "options": {
+        "cwd": "${workspaceRoot}"
+      }
+    },
+    {
+      "label": "Build Executable",
+      "type": "shell",
+      "command": "make",
+      "dependsOn": ["CMake Config"],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/build"
+      }
+    },
+    {
+      "label": "Start Executable",
+      "type": "shell",
+      "command": "./Tetris",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/build"
+      }
+    },
+    // These can only be ran after the porting process!
+    {
+      "label": "Remove Existing Web Files",
+      "type": "shell",
+      "command": "rm",
+      "args": [
+        "-f", "index.js", "index.wasm"
+      ],
+      "windows": {
+        "options": {
+          "cwd": "${workspaceRoot}/public",
+          "shell": {
+            "executable": "cmd.exe"
+          }
+        },
+        "command": "del",
+        "args": ["/F", "index.js", "index.wasm"]
+      },
+      "options": {
+        "cwd": "${workspaceRoot}/public"
+      }
+    },
+    {
+      "label": "Build WebAssembly",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "--bind", "src/board.cpp", "src/piece.cpp", "src/main.cpp",
+        "-std=c++14",
+        "-s", "WASM=1",
+        "-s", "USE_SDL=2",
+        "-s", "MODULARIZE=1",
+        "-O3",
+        "-o", "public/index.js"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "dependsOn": ["Remove Existing Web Files"]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-/**
+/*
  * This file interacts with the canvas through imported functions.
  * It moves a blue rectangle diagonally across the canvas
  * (mimics the SDL example).
@@ -20,8 +20,10 @@ typedef struct Rect {
 
 struct Rect rect;
 
-// Updates the rectangle location by 1px in the x and y in
-// a direction based on its current position.
+/*
+ * Updates the rectangle location by 1px in the x and y in a
+ * direction based on its current position.
+ */
 void updateRectLocation() {
     // Since we want the rectangle to "bump" into the edge of the
     // canvas, we need to determine when the right edge of the
@@ -43,20 +45,20 @@ void updateRectLocation() {
 }
 
 EM_JS(void, js_clear_rect, (), {
-  // Clear the rectangle to ensure there's no color where it
-  // was before:
-  var canvas = document.querySelector('#myCanvas');
-  var ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#ff0000';
-  ctx.fillRect(0, 0, 255, 255);
+    // Clear the rectangle to ensure there's no color where it
+    // was before:
+    var canvas = document.querySelector('#myCanvas');
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ff0000';
+    ctx.fillRect(0, 0, 255, 255);
 });
 
 EM_JS(void, js_fill_rect, (int x, int y, int width, int height), {
-  // Fill the rectangle with blue in the specified coordinates:
-  var canvas = document.querySelector('#myCanvas');
-  var ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#0000ff';
-  ctx.fillRect(x, y, width, height);
+    // Fill the rectangle with blue in the specified coordinates:
+    var canvas = document.querySelector('#myCanvas');
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#0000ff';
+    ctx.fillRect(x, y, width, height);
 });
 
 /*
@@ -81,11 +83,11 @@ EMSCRIPTEN_KEEPALIVE
 void setIsRunning(bool newIsRunning) {
     isRunning = newIsRunning;
     EM_ASM({
-      // isRunning is either 0 or 1, but in JavaScript, 0
-      // is "falsy", so we can set the status text based
-      // without explicitly checking if the value is 0 or 1:
-      var newStatus = $0 ? 'Running' : 'Paused';
-      document.querySelector('#runStatus').innerHTML = newStatus;
+        // isRunning is either 0 or 1, but in JavaScript, 0
+        // is "falsy", so we can set the status text based
+        // without explicitly checking if the value is 0 or 1:
+        var newStatus = $0 ? 'Running' : 'Paused';
+        document.querySelector('#runStatus').innerHTML = newStatus;
     }, isRunning);
 }
 

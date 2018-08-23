@@ -1,0 +1,184 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    // This is the default build task that compiles the currently open
+    // file:
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "${file}",
+        "-Os",
+        "-s", "WASM=1",
+        "-s", "SIDE_MODULE=1",
+        "-s", "BINARYEN_ASYNC_COMPILATION=0",
+        "-o", "${fileDirname}/${fileBasenameNoExtension}.wasm"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Chapter 4: Build",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "main.c",
+        "-Os",
+        "-s", "WASM=1",
+        "-s", "SIDE_MODULE=1",
+        "-s", "BINARYEN_ASYNC_COMPILATION=0",
+        "-o", "main.wasm"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-4-installing-deps"
+      }
+    },
+    {
+      "label": "Chapter 5: With Glue",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "with-glue.c",
+        "-O3",
+        "-s", "WASM=1",
+        "-s", "USE_SDL=2",
+        "-o", "with-glue.html"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-5-create-load-module"
+      }
+    },
+    {
+      "label": "Chapter 5: Custom Loading",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "with-glue.c",
+        "-O3",
+        "-s", "WASM=1",
+        "-s", "USE_SDL=2",
+        "-s", "MODULARIZE=1",
+        "-o", "custom-loading.js"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-5-create-load-module"
+      }
+    },
+    {
+      "label": "Chapter 5: Try With Glue",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "with-glue.c",
+        "-Os",
+        "-s", "WASM=1",
+        "-s", "USE_SDL=2",
+        "-s", "SIDE_MODULE=1",
+        "-s", "BINARYEN_ASYNC_COMPILATION=0",
+        "-o", "try-with-glue.wasm"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-5-create-load-module"
+      }
+    },
+    {
+      "label": "Chapter 5: Without Glue",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "without-glue.c",
+        "-Os",
+        "-s", "WASM=1",
+        "-s", "SIDE_MODULE=1",
+        "-s", "BINARYEN_ASYNC_COMPILATION=0",
+        "-o", "without-glue.wasm"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-5-create-load-module"
+      }
+    },
+    {
+      "label": "Chapter 6: With Glue",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "js-with-glue.c",
+        "-O3",
+        "-s", "WASM=1",
+        "-s", "MODULARIZE=1",
+        "-o", "js-with-glue.js"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-6-interact-with-js"
+      }
+    },
+    {
+      "label": "Chapter 6: Without Glue",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "js-without-glue.c",
+        "-Os",
+        "-s", "WASM=1",
+        "-s", "SIDE_MODULE=1",
+        "-s", "BINARYEN_ASYNC_COMPILATION=0",
+        "-o", "js-without-glue.wasm"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-6-interact-with-js"
+      }
+    },
+    {
+      "label": "Chapter 6: With Source Maps",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "js-without-glue.c",
+        "-O1",
+        "-g4",
+        "-s", "WASM=1",
+        "-s", "SIDE_MODULE=1",
+        "-s", "BINARYEN_ASYNC_COMPILATION=0",
+        "-o", "js-without-glue.wasm",
+        "--source-map-base",
+        "http://localhost:8080/chapter-6-interact-with-js"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-6-interact-with-js"
+      }
+    },
+    {
+      "label": "Chapter 7: Build",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "lib/main.c",
+        "-Os",
+        "-s", "WASM=1",
+        "-s", "SIDE_MODULE=1",
+        "-s", "BINARYEN_ASYNC_COMPILATION=0",
+        "-o", "src/assets/main.wasm"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-7-cook-the-books"
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-/**
+/*
  * This file interacts with the canvas through imported functions.
  * It moves a circle diagonally across the canvas.
  */
@@ -16,8 +16,10 @@ typedef struct Circle {
 
 struct Circle circle;
 
-// Updates the circle location by 1px in the x and y in a direction
-// based on its current position.
+/*
+ * Updates the circle location by 1px in the x and y in a
+ * direction based on its current position.
+ */
 void updateCircleLocation() {
     // Since we want the circle to "bump" into the edge of the canvas,
     // we need to determine when the right edge of the circle
@@ -45,8 +47,10 @@ extern "C" {
 extern int jsClearCircle();
 extern int jsFillCircle(int x, int y, int radius);
 
-// Clear the existing circle element from the canvas and
-// draw a new one in the updated location.
+/*
+ * Clear the existing circle element from the canvas and draw a
+ * new one in the updated location.
+ */
 void moveCircle() {
     jsClearCircle();
     updateCircleLocation();

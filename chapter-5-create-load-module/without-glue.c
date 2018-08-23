@@ -1,4 +1,4 @@
-/**
+/*
  * This file interacts with the canvas through imported functions.
  * It moves a blue rectangle diagonally across the canvas
  * (mimics the SDL example).
