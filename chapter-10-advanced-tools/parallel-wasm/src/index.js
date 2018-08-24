@@ -10,6 +10,7 @@ const getWorkerUrl = async () => {
   var url = new URL(window.location);
   var isBlob = url.searchParams.get('blob');
   var workerUrl = 'worker.js';
+  document.title = 'Wasm Worker (String URL)';
 
   // Create a Blob instance from the text contents of `worker.js`:
   if (isBlob === 'true') {
@@ -17,6 +18,7 @@ const getWorkerUrl = async () => {
     var results = await response.text();
     var workerBlob = new Blob([results]);
     workerUrl = window.URL.createObjectURL(workerBlob);
+    document.title = 'Wasm Worker (Blob URL)';
   }
 
   return Promise.resolve(workerUrl);
@@ -28,7 +30,7 @@ const getWorkerUrl = async () => {
  */
 const initializeWorker = async (wasmWorker, name) => {
   await wasmWorker.initialize(name);
-  wasmWorker.addActionHandler('CALC_RESPONSE', payload => {
+  wasmWorker.addListenerForType('CALC_RESPONSE', payload => {
     document.querySelector('#result').value = payload;
   });
 
@@ -40,22 +42,22 @@ const initializeWorker = async (wasmWorker, name) => {
 };
 
 /**
- * Spawns (2) workers: one associated with add.wasm and another with
- * subtract.wasm. Adds an event listener to the "Reset" button to clear
- * all the input values.
+ * Spawns (2) workers: one associated with calc-add.wasm and another
+ * with calc-subtract.wasm. Adds an event listener to the "Reset"
+ * button to clear all the input values.
  */
 const loadPage = async () => {
+  document.querySelector('#reset').addEventListener('click', () => {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => (input.value = 0));
+  });
+
   const workerUrl = await getWorkerUrl();
   var addWorker = new WasmWorker(workerUrl);
   await initializeWorker(addWorker, 'add');
 
   var subtractWorker = new WasmWorker(workerUrl);
   await initializeWorker(subtractWorker, 'subtract');
-
-  document.querySelector('#reset').addEventListener('click', () => {
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => (input.value = 0));
-  });
 };
 
 loadPage()

@@ -64,7 +64,7 @@
       },
     };
 
-    loadWasm('./js-without-glue.wasm', { env }).then(({ instance }) => {
+    loadWasm('js-without-glue.wasm', { env }).then(({ instance }) => {
       const m = instance.exports;
       m._init();
 

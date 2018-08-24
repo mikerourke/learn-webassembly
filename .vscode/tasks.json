@@ -39,7 +39,7 @@
       ],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/chapter-4-installing-deps"
+        "cwd": "${workspaceRoot}/chapter-04-installing-deps"
       }
     },
     {
@@ -55,7 +55,7 @@
       ],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/chapter-5-create-load-module"
+        "cwd": "${workspaceRoot}/chapter-05-create-load-module"
       }
     },
     {
@@ -72,7 +72,7 @@
       ],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/chapter-5-create-load-module"
+        "cwd": "${workspaceRoot}/chapter-05-create-load-module"
       }
     },
     {
@@ -90,7 +90,7 @@
       ],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/chapter-5-create-load-module"
+        "cwd": "${workspaceRoot}/chapter-05-create-load-module"
       }
     },
     {
@@ -107,7 +107,7 @@
       ],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/chapter-5-create-load-module"
+        "cwd": "${workspaceRoot}/chapter-05-create-load-module"
       }
     },
     {
@@ -123,7 +123,7 @@
       ],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/chapter-6-interact-with-js"
+        "cwd": "${workspaceRoot}/chapter-06-interact-with-js"
       }
     },
     {
@@ -140,7 +140,7 @@
       ],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/chapter-6-interact-with-js"
+        "cwd": "${workspaceRoot}/chapter-06-interact-with-js"
       }
     },
     {
@@ -156,11 +156,11 @@
         "-s", "BINARYEN_ASYNC_COMPILATION=0",
         "-o", "js-without-glue.wasm",
         "--source-map-base",
-        "http://localhost:8080/chapter-6-interact-with-js"
+        "http://localhost:8080/chapter-06-interact-with-js"
       ],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/chapter-6-interact-with-js"
+        "cwd": "${workspaceRoot}/chapter-06-interact-with-js"
       }
     },
     {
@@ -177,7 +177,7 @@
       ],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/chapter-7-cook-the-books"
+        "cwd": "${workspaceRoot}/chapter-07-cook-the-books"
       }
     }
   ]

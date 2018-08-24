@@ -5,14 +5,14 @@
 export default class WasmWorker {
   constructor(workerUrl) {
     this.worker = new Worker(workerUrl);
-    this.handlersByType = {};
+    this.listenersByType = {};
     this.addListeners();
   }
 
-  // Add a handler associated with the `type` value from the
+  // Add a listener associated with the `type` value from the
   // Worker message:
-  addActionHandler(type, actionHandler) {
-    this.handlersByType[type] = actionHandler;
+  addListenerForType(type, listener) {
+    this.listenersByType[type] = listener;
   }
 
   // Add event listeners for error and message handling.
@@ -21,7 +21,7 @@ export default class WasmWorker {
       console.error(`%cError: ${event.message}`, 'color: red;');
     }, false);
 
-    // If a handler was specified using the `addActionHandler` method,
+    // If a handler was specified using the `addListener` method,
     // fire that method if the `type` matches:
     this.worker.addEventListener('message', event => {
       if (
@@ -30,8 +30,8 @@ export default class WasmWorker {
         event.data.hasOwnProperty('payload')
       ) {
         const { type, payload } = event.data;
-        if (this.handlersByType[type]) {
-          this.handlersByType[type](payload);
+        if (this.listenersByType[type]) {
+          this.listenersByType[type](payload);
         }
       } else {
         console.log(event.data);
@@ -40,9 +40,10 @@ export default class WasmWorker {
   }
 
   // Fetches the Wasm file, compiles it, and passes the compiled result
-  // to the corresponding worker:
+  // to the corresponding worker. The compiled module is instantiated
+  // in the worker.
   initialize(name) {
-    return fetch(`assets/${name}.wasm`)
+    return fetch(`calc-${name}.wasm`)
       .then(response => response.arrayBuffer())
       .then(bytes => WebAssembly.compile(bytes))
       .then(wasmModule => {
