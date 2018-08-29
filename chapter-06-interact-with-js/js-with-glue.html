@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-us">
 <head>
-    <title>Interact with JS using Glue Code</title>
+  <title>Interact with JS using Glue Code</title>
 </head>
 <body>
   <h1>Interact with JS using Glue Code</h1>
@@ -27,11 +27,11 @@
         };
 
         // Enable you to pause and resume the rectangle movement:
-        document.querySelector('#actionButton').addEventListener('click',
-          (e) => {
+        document.querySelector('#actionButton')
+          .addEventListener('click', event => {
             const newIsRunning = !m._getIsRunning();
             m._setIsRunning(newIsRunning);
-            e.target.innerHTML = newIsRunning ? 'Pause' : 'Start';
+            event.target.innerHTML = newIsRunning ? 'Pause' : 'Start';
             if (newIsRunning) loopRectMotion();
           });
 
