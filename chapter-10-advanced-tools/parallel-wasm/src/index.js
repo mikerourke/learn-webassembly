@@ -7,16 +7,16 @@ import WasmWorker from './WasmWorker.js';
  * URL to use for the Worker either as a string or created from a Blob.
  */
 const getWorkerUrl = async () => {
-  var url = new URL(window.location);
-  var isBlob = url.searchParams.get('blob');
+  const url = new URL(window.location);
+  const isBlob = url.searchParams.get('blob');
   var workerUrl = 'worker.js';
   document.title = 'Wasm Worker (String URL)';
 
   // Create a Blob instance from the text contents of `worker.js`:
   if (isBlob === 'true') {
-    var response = await fetch('worker.js');
-    var results = await response.text();
-    var workerBlob = new Blob([results]);
+    const response = await fetch('worker.js');
+    const results = await response.text();
+    const workerBlob = new Blob([results]);
     workerUrl = window.URL.createObjectURL(workerBlob);
     document.title = 'Wasm Worker (Blob URL)';
   }
@@ -53,10 +53,10 @@ const loadPage = async () => {
   });
 
   const workerUrl = await getWorkerUrl();
-  var addWorker = new WasmWorker(workerUrl);
+  const addWorker = new WasmWorker(workerUrl);
   await initializeWorker(addWorker, 'add');
 
-  var subtractWorker = new WasmWorker(workerUrl);
+  const subtractWorker = new WasmWorker(workerUrl);
   await initializeWorker(subtractWorker, 'subtract');
 };
 
