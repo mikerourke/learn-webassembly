@@ -212,7 +212,7 @@ void recalculateForCategories() {
  * Returns the total amount of either raw or cooked transactions
  * associated with the specified type and category ID.
  */
-float getTotalForTypeAndCategory(AmountType type, int categoryId) {
+float getCategoryTotal(AmountType type, int categoryId) {
     // Ensure the category totals have been calculated:
     if (categoriesHead == NULL) buildValuesByCategoryList();
 

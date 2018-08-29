@@ -8,18 +8,18 @@ Vue.use(VueNumeric.default);
 // as props):
 window.$store = store;
 
-function initialRender(component) {
-  new Vue({
-    render: h => h(component),
-    el: '#app'
-  });
-}
+// Since we can only pass numbers into a Wasm function, these flags
+// represent the amount type we're trying to calculate:
+window.AMOUNT_TYPE = {
+  raw: 1,
+  cooked: 2
+};
 
 // After fetching the transactions and initializing the Wasm module,
-// render the app. If there's an error, show the error page component:
+// render the app.
 initializeStore()
   .then(() => {
-    initialRender(App);
+    new Vue({ render: h => h(App), el: '#app' });
   })
   .catch(err => {
     console.error(err);

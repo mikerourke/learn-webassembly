@@ -1,13 +1,12 @@
 // Paste your jsonstore.io endpoint here (no ending slash):
-const API_URL =
-  'https://www.jsonstore.io/0a207d07e1442fbfdec6207fb3713924abc616b184d38072a07a21027b03ace0';
+const API_URL = '[JSONSTORE.IO ENDPOINT]';
 
 /**
  * Wrapper for performing API calls. We don't want to call response.json()
  * each time we make a fetch call.
  * @param {string} endpoint Endpoint (e.g. "/transactions" to make API call to
  * @param {Object} init Fetch options object containing any custom settings
- * @returns {Promise<{ result }>}
+ * @returns {Promise<*>}
  * @see https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
  */
 const performApiFetch = (endpoint = '', init = {}) =>

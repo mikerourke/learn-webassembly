@@ -1,16 +1,14 @@
-import WasmTransactions from './WasmTransactions.js';
 import {
   apiFetchTransactions,
   apiAddTransaction,
   apiEditTransaction,
   apiRemoveTransaction
 } from './api.js';
+import WasmTransactions from './WasmTransactions.js';
 
 /**
  * This object is assigned to "$store" on the window object, so it's
- * available globally throughout the application. In a production
- * application, you'd use a library like Vuex to achieve this
- * functionality.
+ * available globally throughout the application.
  */
 export const store = {
   wasm: null,
@@ -25,10 +23,15 @@ export const store = {
     }
   },
 
-  /**
-   * Populate global state with the transactions from the API response.
-   * This is only called once, when the application is initially loaded.
-   */
+  getCategories() {
+    const categories = this.state.transactions.map(
+      ({ category }) => category
+    );
+    // Remove duplicate categories and sort the names in ascending order:
+    return _.uniq(categories).sort();
+  },
+
+  // Populate global state with the transactions from the API response:
   populateTransactions(transactions) {
     const sortedTransactions = _.sortBy(transactions, [
       'transactionDate',
@@ -93,31 +96,17 @@ export const store = {
 
   getActiveTransaction() {
     const { transactions, activeTransactionId } = this.state;
-    return (
-      transactions.find(({ id }) => id === activeTransactionId) || {
-        id: 0
-      }
-    );
-  },
-
-  getCategories() {
-    const categories = this.state.transactions.map(
-      ({ category }) => category
-    );
-    // Since we looped through ALL of the transactions, we need to get
-    // rid of the duplicates. Once duplicates are removed, sort the
-    // names in ascending order:
-    return _.uniq(categories).sort();
+    const foundTransaction = transactions.find(transaction =>
+      transaction.id === activeTransactionId);
+    return foundTransaction || { id: 0 };
   },
 
   updateInitialBalance(amount, fieldName) {
     this.state.balances[fieldName] = amount;
   },
 
-  /**
-   * Update the "balances" object in global state based on the current
-   * initial balances.
-   */
+  // Update the "balances" object in global state based on the current
+  // initial balances:
   recalculateBalances() {
     const { initialRaw, initialCooked } = this.state.balances;
     const { currentRaw, currentCooked } = this.wasm.getCurrentBalances(
@@ -138,20 +127,9 @@ export const store = {
  * from the API endpoint, and loads them into state and the Wasm
  * instance.
  */
-export const initializeStore = () => {
+export const initializeStore = async () => {
   const wasmTransactions = new WasmTransactions();
-
-  return new Promise((resolve, reject) =>
-    wasmTransactions
-      .initializeWasm()
-      .then(wasm => {
-        store.wasm = wasm;
-        return apiFetchTransactions();
-      })
-      .then(transactions => {
-        store.populateTransactions(transactions);
-        return resolve();
-      })
-      .catch(reject)
-  );
+  store.wasm = await wasmTransactions.initialize();
+  const transactions = await apiFetchTransactions();
+  store.populateTransactions(transactions);
 };
