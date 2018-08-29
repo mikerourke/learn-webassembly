@@ -1,11 +1,13 @@
 .DEFAULT_GOAL := build
 
+OUTPUT_FILE = main.wasm
+
 clean:
-	@[ -f ./main.wasm ] && rm main.wasm || true
+	rimraf $(OUTPUT_FILE)
 
 compile:
 	emcc main.c -Os \
 	-s WASM=1 -s SIDE_MODULE=1 -s BINARYEN_ASYNC_COMPILATION=0 \
-	-o main.wasm
+	-o $(OUTPUT_FILE)
 
 build: clean compile

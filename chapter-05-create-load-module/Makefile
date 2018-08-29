@@ -5,9 +5,7 @@ OUTPUT_FILES = with-glue.html with-glue.js with-glue.wasm \
 			   try-with-glue.wasm without-glue.wasm
 
 clean:
-	for file in $(OUTPUT_FILES); do \
-		if [ -f $$file ];then rm $$file; fi \
-	done
+	rimraf $(OUTPUT_FILES)
 
 with-glue: clean
 	emcc with-glue.c -O3 -s WASM=1 -s USE_SDL=2 -o with-glue.html
