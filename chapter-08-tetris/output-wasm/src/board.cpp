@@ -7,7 +7,7 @@ Board::Board() : cells_{{ false }}, currentScore_(0) {
     displayScore(0);
 }
 
-/**
+/*
  * Loop through each of the locations or "cells" on the board and fill
  * any cells populated by a piece with the appropriate color. Show
  * the score at the bottom of the window (rows filled).
@@ -31,7 +31,7 @@ void Board::draw(SDL_Renderer *renderer) {
     }
 }
 
-/**
+/*
  * Determine if the specified piece has collided with the bounding board.
  * Returns true if a collision was detected.
  */
@@ -56,7 +56,7 @@ bool Board::isCollision(const Piece &piece) const {
     return false;
 }
 
-/**
+/*
  * Handles a piece collision on the board and recalculates the cells
  * to determine if any rows have been filled.
  */
@@ -88,7 +88,7 @@ void Board::unite(const Piece &piece) {
     }
 }
 
-/**
+/*
  * Returns true if the specified row has all of the columns filled with
  * pieces.
  */
@@ -99,7 +99,7 @@ bool Board::isRowFull(int row) {
     return true;
 }
 
-/**
+/*
  * Returns true if there are full rows present on the board.
  */
 bool Board::areFullRowsPresent() {
@@ -109,7 +109,7 @@ bool Board::areFullRowsPresent() {
     return false;
 }
 
-/**
+/*
  * Updates the contents of the fullRow number with the contents of the
  * row above it (to collapse the filled row).
  */
@@ -122,7 +122,7 @@ void Board::updateOffsetRow(int fullRow) {
     }
 }
 
-/**
+/*
  * Updates the DOM with the current score.
  */
 void Board::displayScore(int newScore) {

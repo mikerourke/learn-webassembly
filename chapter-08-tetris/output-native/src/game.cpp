@@ -44,7 +44,7 @@ Game::~Game() {
     SDL_Quit();
 }
 
-/**
+/*
  * Looping function for running game (updates made every 1 second).
  */
 bool Game::loop() {
@@ -76,7 +76,7 @@ bool Game::loop() {
     return true;
 }
 
-/**
+/*
  * Checks if the specified piece has collided with the bounds of the board.
  * If a collision occurred, the game is over and the board is cleared.
  */
@@ -90,7 +90,7 @@ void Game::checkForCollision(const Piece &newPiece) {
     }
 }
 
-/**
+/*
  * Moves the piece in the direction that corresponds with the key
  * presses.
  */

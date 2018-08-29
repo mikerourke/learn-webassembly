@@ -1,7 +1,7 @@
-/**
+/*
  * Most of this code was taken from the GeeksforGeeks pages covering
  * Doubly Linked Lists. It's similar to the contents of lib/main.c in
- * the /chapter-7-cook-the-books directory.
+ * the /chapter-07-cook-the-books directory.
  * @link https://www.geeksforgeeks.org/doubly-linked-list
  * @link https://www.geeksforgeeks.org/delete-a-node-in-a-doubly-linked-list
  */
@@ -20,7 +20,7 @@ struct Node {
 struct Node *transactionsHead = NULL;
 struct Node *categoriesHead = NULL;
 
-/**
+/*
  * Removes a node from the linked list.
  */
 void deleteNode(struct Node **headNode, struct Node *delNode) {
@@ -40,7 +40,7 @@ void deleteNode(struct Node **headNode, struct Node *delNode) {
     free(delNode);
 }
 
-/**
+/*
  * Adds a node to the end of the linked list.
  */
 void appendNode(struct Node **headNode, int id, int categoryId,
@@ -76,7 +76,7 @@ void appendNode(struct Node **headNode, int id, int categoryId,
     newNode->prev = last;
 }
 
-/**
+/*
  * Returns a node from the linked list that corresponds with the specified
  * ID. Since we have 2 linked lists, one for transactions, and one for
  * category totals, we can use this method to find either one.
@@ -90,14 +90,14 @@ struct Node *findNodeById(int id, struct Node *withinNode) {
     return NULL;
 }
 
-/**
+/*
  * Add a new node (transaction) to the local transactions linked list.
  */
 void addTransaction(int id, int categoryId, float amount) {
     appendNode(&transactionsHead, id, categoryId, amount);
 }
 
-/**
+/*
  * Update an existing node (transaction) in the local transactions linked
  * list.
  */
@@ -109,7 +109,7 @@ void editTransaction(int id, int categoryId, float amount) {
     }
 }
 
-/**
+/*
  * Removes the node from the local transactions linked list that
  * corresponds with the specified ID.
  */
@@ -118,7 +118,7 @@ void removeTransaction(int id) {
     if (foundNode != NULL) deleteNode(&transactionsHead, foundNode);
 }
 
-/**
+/*
  * Attempts to find an existing node associated with the specified
  * category ID. If found, increments the amount by the value specified
  * as an argument. If not found, appends it as a new node to the
@@ -134,7 +134,7 @@ void upsertCategoryNode(int categoryId, float transactionAmount) {
     }
 }
 
-/**
+/*
  * Loops through the transactions list and either adds a node
  * representing the category associated with that transaction to the
  * categories linked list or increments the amount in the existing
@@ -148,7 +148,7 @@ void buildValuesByCategoryList() {
     }
 }
 
-/**
+/*
  * Force recalculation for each of the categories for the current
  * transaction values.
  */
@@ -157,7 +157,7 @@ void recalculateForCategories() {
     buildValuesByCategoryList();
 }
 
-/**
+/*
  * Returns the total amount of all transactions associated with the
  * specified category ID.
  */
@@ -170,7 +170,7 @@ float getTotalForCategory(int categoryId) {
     return categoryNode->amount;
 }
 
-/**
+/*
  * Returns the grand total (sum of amount) of all transactions.
  */
 float getGrandTotal() {

@@ -9,7 +9,7 @@ Piece::Piece(Piece::Kind kind) :
     angle_(0) {
 }
 
-/**
+/*
  * Draws the piece that corresponds with the kind specified in the
  * constructor and sets color appropriately.
  */
@@ -60,7 +60,7 @@ void Piece::draw(SDL_Renderer *renderer) {
     }
 }
 
-/**
+/*
  * Moves the piece a specified number of columns and rows.
  */
 void Piece::move(int columnDelta, int rowDelta) {
@@ -68,7 +68,7 @@ void Piece::move(int columnDelta, int rowDelta) {
     row_ += rowDelta;
 }
 
-/**
+/*
  * Rotates the piece to a different orientation in the Shapes array
  * (in isBlock function).
  */
@@ -77,7 +77,7 @@ void Piece::rotate() {
     angle_ %= 4;
 }
 
-/**
+/*
  * Returns true if the piece is present in the specified column and row.
  */
 bool Piece::isBlock(int column, int row) const {

@@ -20,7 +20,7 @@ export default {
     };
   },
   methods: {
-    // Any time a transaction is added, updated, or deleted, we need to
+    // Any time a transaction is added, edited, or removed, we need to
     // ensure the balance is updated:
     onTransactionChange() {
       $store.recalculateBalances();

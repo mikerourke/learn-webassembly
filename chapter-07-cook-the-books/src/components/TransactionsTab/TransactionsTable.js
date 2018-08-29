@@ -2,7 +2,7 @@ import ConfirmationModal from './ConfirmationModal.js';
 
 /**
  * This component contains a table of all the transactions with buttons
- * to edit or delete records.
+ * to edit or remove records.
  */
 export default {
   name: 'transactions-table',
@@ -56,7 +56,7 @@ export default {
       $store.showTransactionModal(transaction.id);
     },
 
-    // Clicking the remove button doesn't delete the transaction, the
+    // Clicking the remove button doesn't remove the transaction, the
     // user must confirm the action through the Confirmation Modal
     // component:
     onRemoveClick(transaction) {
@@ -68,7 +68,7 @@ export default {
       this.confirmationModalShown = false;
     },
 
-    // If confirmed, delete the transaction:
+    // If confirmed, remove the transaction:
     onConfirmationYesClick() {
       this.confirmationModalShown = false;
       $store.removeTransaction(this.pendingTransaction);

@@ -1,6 +1,7 @@
 /**
  * Returns a valid importObj.env object with default values to pass
- * into the WebAssembly.Instance constructor for Emscripten's Wasm module.
+ * into the WebAssembly.Instance constructor for Emscripten's
+ * Wasm module.
  */
 const getDefaultEnv = () => ({
   memoryBase: 0,
@@ -15,8 +16,8 @@ const getDefaultEnv = () => ({
  * .wasm file.
  */
 function loadWasm(fileName, importObj = { env: {} }) {
-  // Override any default env values with the passed in
-  // importObj.env values:
+  // Override any default env values with the passed in importObj.env
+  // values:
   const allEnv = Object.assign({}, getDefaultEnv(), importObj.env);
 
   // Ensure the importObj object includes the valid env value:
