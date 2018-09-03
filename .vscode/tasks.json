@@ -26,6 +26,16 @@
       }
     },
     {
+      "label": "Chapter 4: Clean",
+      "type": "shell",
+      "command": "rimraf",
+      "args": ["main.wasm"],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-04-installing-deps"
+      }
+    },
+    {
       "label": "Chapter 4: Build",
       "type": "shell",
       "command": "emcc",
@@ -40,6 +50,21 @@
       "problemMatcher": [],
       "options": {
         "cwd": "${workspaceRoot}/chapter-04-installing-deps"
+      },
+      "dependsOn": ["Chapter 4: Clean"]
+    },
+    {
+      "label": "Chapter 5: Clean",
+      "type": "shell",
+      "command": "rimraf",
+      "args": [
+        "with-glue.html with-glue.js with-glue.wasm",
+        "custom-loading.js custom-loading.wasm",
+        "try-with-glue.wasm without-glue.wasm"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-05-create-load-module"
       }
     },
     {
@@ -56,7 +81,8 @@
       "problemMatcher": [],
       "options": {
         "cwd": "${workspaceRoot}/chapter-05-create-load-module"
-      }
+      },
+      "dependsOn": ["Chapter 5: Clean"]
     },
     {
       "label": "Chapter 5: Custom Loading",
@@ -73,7 +99,8 @@
       "problemMatcher": [],
       "options": {
         "cwd": "${workspaceRoot}/chapter-05-create-load-module"
-      }
+      },
+      "dependsOn": ["Chapter 5: Clean"]
     },
     {
       "label": "Chapter 5: Try With Glue",
@@ -91,7 +118,8 @@
       "problemMatcher": [],
       "options": {
         "cwd": "${workspaceRoot}/chapter-05-create-load-module"
-      }
+      },
+      "dependsOn": ["Chapter 5: Clean"]
     },
     {
       "label": "Chapter 5: Without Glue",
@@ -108,10 +136,24 @@
       "problemMatcher": [],
       "options": {
         "cwd": "${workspaceRoot}/chapter-05-create-load-module"
+      },
+      "dependsOn": ["Chapter 5: Clean"]
+    },
+    {
+      "label": "Chapter 6: Clean",
+      "type": "shell",
+      "command": "rimraf",
+      "args": [
+        "js-with-glue.js js-with-glue.wasm js-without-glue.wasm",
+        "js-without-glue.wasm.map js-without-glue.wast"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-06-interact-with-js"
       }
     },
     {
-      "label": "Chapter 6: With Glue",
+      "label": "Chapter 6: JS With Glue",
       "type": "shell",
       "command": "emcc",
       "args": [
@@ -124,14 +166,15 @@
       "problemMatcher": [],
       "options": {
         "cwd": "${workspaceRoot}/chapter-06-interact-with-js"
-      }
+      },
+      "dependsOn": ["Chapter 6: Clean"]
     },
     {
-      "label": "Chapter 6: Without Glue",
+      "label": "Chapter 6: JS Without Glue",
       "type": "shell",
       "command": "emcc",
       "args": [
-        "js-without-glue.c",
+        "js-without-glue.cpp",
         "-Os",
         "-s", "WASM=1",
         "-s", "SIDE_MODULE=1",
@@ -141,7 +184,8 @@
       "problemMatcher": [],
       "options": {
         "cwd": "${workspaceRoot}/chapter-06-interact-with-js"
-      }
+      },
+      "dependsOn": ["Chapter 6: Clean"]
     },
     {
       "label": "Chapter 6: With Source Maps",
@@ -161,6 +205,17 @@
       "problemMatcher": [],
       "options": {
         "cwd": "${workspaceRoot}/chapter-06-interact-with-js"
+      },
+      "dependsOn": ["Chapter 6: Clean"]
+    },
+    {
+      "label": "Chapter 7: Clean",
+      "type": "shell",
+      "command": "rimraf",
+      "args": ["src/assets/main.wasm"],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-07-cook-the-books"
       }
     },
     {
@@ -178,7 +233,78 @@
       "problemMatcher": [],
       "options": {
         "cwd": "${workspaceRoot}/chapter-07-cook-the-books"
+      },
+      "dependsOn": ["Chapter 7: Clean"]
+    },
+    {
+      "label": "Chapter 10: Clean for LLVM",
+      "type": "shell",
+      "command": "rimraf",
+      "args": ["main.wasm"],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-10-advanced-tools/compile-with-llvm"
       }
+    },
+    {
+      "label": "Chapter 10: Build for LLVM",
+      "type": "shell",
+      "command": "wa",
+      "args": [
+        "main.cpp",
+        "-o", "main.wasm"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-10-advanced-tools/compile-with-llvm"
+      },
+      "dependsOn": ["Chapter 10: Clean for LLVM"]
+    },
+    {
+      "label": "Chapter 10: Clean for Parallel",
+      "type": "shell",
+      "command": "rimraf",
+      "args": ["*.wasm"],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-10-advanced-tools/src"
+      }
+    },
+    {
+      "label": "Chapter 10: Build Add for Parallel",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "lib/add.c",
+        "-Os",
+        "-s", "WASM=1",
+        "-s", "SIDE_MODULE=1",
+        "-s", "BINARYEN_ASYNC_COMPILATION=0",
+        "-o", "src/calc-add.wasm"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-10-advanced-tools"
+      },
+      "dependsOn": ["Chapter 10: Clean for Parallel"]
+    },
+    {
+      "label": "Chapter 10: Build for Parallel",
+      "type": "shell",
+      "command": "emcc",
+      "args": [
+        "lib/subtract.c",
+        "-Os",
+        "-s", "WASM=1",
+        "-s", "SIDE_MODULE=1",
+        "-s", "BINARYEN_ASYNC_COMPILATION=0",
+        "-o", "src/calc-subtract.wasm"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceRoot}/chapter-10-advanced-tools"
+      },
+      "dependsOn": ["Chapter 10: Build Add for Parallel"]
     }
   ]
 }
