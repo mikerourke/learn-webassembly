@@ -6,10 +6,10 @@ OUTPUT_FILES = js-with-glue.js js-with-glue.wasm js-without-glue.wasm \
 clean:
 	rimraf $(OUTPUT_FILES)
 
-with-glue: clean
+js-with-glue: clean
 	emcc js-with-glue.c -O3 -s WASM=1 -s MODULARIZE=1 -o js-with-glue.js
 
-without-glue: clean
+js-without-glue: clean
 	emcc js-without-glue.cpp -Os -s WASM=1 -s SIDE_MODULE=1 \
 	-s BINARYEN_ASYNC_COMPILATION=0 -o js-without-glue.wasm
 
