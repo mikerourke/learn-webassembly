@@ -1,10 +1,12 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.5)
 project(Tetris)
 
 set(CMAKE_CXX_STANDARD 14)
 
-# TODO: Add configuration for Windows and Linux
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+# TODO: Add configuration for Windows
+if(WIN32)
+    message(FATAL_ERROR "You cannot build on your platform.")
+else()
     # This is used to find the SDL_ttf library (CMake can't find it
     # out of the box):
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
@@ -17,8 +19,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         ${SDL2_INCLUDE_DIRS}
         ${SDL2_TTF_INCLUDE_DIRS}
     )
-else()
-    message(FATAL_ERROR "You cannot build on your platform.")
 endif()
 
 # This is the font used for displaying the score:
