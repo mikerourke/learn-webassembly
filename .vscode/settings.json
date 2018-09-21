@@ -1,17 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
-   "editor.fontFamily": "Roboto Mono",
-   "editor.fontSize": 14,
-   "editor.lineHeight": 24,
-   "editor.fontWeight": "400",
-  "terminal.integrated.fontFamily": "Roboto Mono",
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.lineHeight": 1.4,
-  "javascript.validate.enable": false,
-  "workbench.iconTheme": "material-icon-theme",
-  "files.insertFinalNewline": true,
   "files.associations": {
-    "*.def": "vba",
     "sdl.h": "c",
     "__bit_reference": "c",
     "deque": "c",
