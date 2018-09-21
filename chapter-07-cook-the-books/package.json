@@ -4,7 +4,7 @@
   "description": "Example application for Learn WebAssembly",
   "main": "src/index.js",
   "scripts": {
-    "start": "browser-sync start --server \"src\" --files \"src\" --single --port 4000",
+    "start": "browser-sync start --server \"src\" --files \"src/**\" --single --no-open --port 4000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
