@@ -27,20 +27,24 @@ extern "C" {
 extern int jsClearRect();
 extern int jsFillRect(int x, int y, int width, int height);
 
+__attribute__((visibility("default")))
 void moveRect() {
     jsClearRect();
     updateRectLocation();
     jsFillRect(rect.x, rect.y, RECT_SIDE, RECT_SIDE);
 }
 
+__attribute__((visibility("default")))
 bool getIsRunning() {
     return isRunning;
 }
 
+__attribute__((visibility("default")))
 void setIsRunning(bool newIsRunning) {
     isRunning = newIsRunning;
 }
 
+__attribute__((visibility("default")))
 void init() {
     rect.x = 0;
     rect.y = 0;
