@@ -1,6 +1,9 @@
 {
   // See https://go.microsoft.com/fwlink/?LinkId=733558
   // for the documentation about the tasks.json format
+
+  // NOTE: All tasks that start with a "->" should be selected from the list. Other tasks
+  // are ran as part of the build process and should not be ran directly.
   "version": "2.0.0",
   "tasks": [
     // This is the default build task that compiles the currently open
@@ -26,7 +29,7 @@
       }
     },
     {
-      "label": "Chapter 4: Clean",
+      "label": "Chapter 04: Clean",
       "type": "shell",
       "command": "rimraf",
       "args": ["main.wasm"],
@@ -36,7 +39,7 @@
       }
     },
     {
-      "label": "Chapter 4: Build",
+      "label": "-> Chapter 04: Build",
       "type": "shell",
       "command": "emcc",
       "args": [
@@ -51,10 +54,10 @@
       "options": {
         "cwd": "${workspaceRoot}/chapter-04-installing-deps"
       },
-      "dependsOn": ["Chapter 4: Clean"]
+      "dependsOn": ["Chapter 04: Clean"]
     },
     {
-      "label": "Chapter 5: Clean",
+      "label": "Chapter 05: Clean",
       "type": "shell",
       "command": "rimraf",
       "args": [
@@ -68,7 +71,7 @@
       }
     },
     {
-      "label": "Chapter 5: With Glue",
+      "label": "-> Chapter 05: With Glue",
       "type": "shell",
       "command": "emcc",
       "args": [
@@ -82,10 +85,10 @@
       "options": {
         "cwd": "${workspaceRoot}/chapter-05-create-load-module"
       },
-      "dependsOn": ["Chapter 5: Clean"]
+      "dependsOn": ["Chapter 05: Clean"]
     },
     {
-      "label": "Chapter 5: Custom Loading",
+      "label": "-> Chapter 05: Custom Loading",
       "type": "shell",
       "command": "emcc",
       "args": [
@@ -100,10 +103,10 @@
       "options": {
         "cwd": "${workspaceRoot}/chapter-05-create-load-module"
       },
-      "dependsOn": ["Chapter 5: Clean"]
+      "dependsOn": ["Chapter 05: Clean"]
     },
     {
-      "label": "Chapter 5: Try With Glue",
+      "label": "-> Chapter 05: Try With Glue",
       "type": "shell",
       "command": "emcc",
       "args": [
@@ -119,10 +122,10 @@
       "options": {
         "cwd": "${workspaceRoot}/chapter-05-create-load-module"
       },
-      "dependsOn": ["Chapter 5: Clean"]
+      "dependsOn": ["Chapter 05: Clean"]
     },
     {
-      "label": "Chapter 5: Without Glue",
+      "label": "-> Chapter 05: Without Glue",
       "type": "shell",
       "command": "emcc",
       "args": [
@@ -137,10 +140,10 @@
       "options": {
         "cwd": "${workspaceRoot}/chapter-05-create-load-module"
       },
-      "dependsOn": ["Chapter 5: Clean"]
+      "dependsOn": ["Chapter 05: Clean"]
     },
     {
-      "label": "Chapter 6: Clean",
+      "label": "Chapter 06: Clean",
       "type": "shell",
       "command": "rimraf",
       "args": [
@@ -153,7 +156,7 @@
       }
     },
     {
-      "label": "Chapter 6: JS With Glue",
+      "label": "-> Chapter 06: JS With Glue",
       "type": "shell",
       "command": "emcc",
       "args": [
@@ -167,10 +170,10 @@
       "options": {
         "cwd": "${workspaceRoot}/chapter-06-interact-with-js"
       },
-      "dependsOn": ["Chapter 6: Clean"]
+      "dependsOn": ["Chapter 06: Clean"]
     },
     {
-      "label": "Chapter 6: JS Without Glue",
+      "label": "-> Chapter 06: JS Without Glue",
       "type": "shell",
       "command": "emcc",
       "args": [
@@ -185,14 +188,14 @@
       "options": {
         "cwd": "${workspaceRoot}/chapter-06-interact-with-js"
       },
-      "dependsOn": ["Chapter 6: Clean"]
+      "dependsOn": ["Chapter 06: Clean"]
     },
     {
-      "label": "Chapter 6: With Source Maps",
+      "label": "-> Chapter 06: With Source Maps",
       "type": "shell",
       "command": "emcc",
       "args": [
-        "js-without-glue.c",
+        "js-without-glue.cpp",
         "-O1",
         "-g4",
         "-s", "WASM=1",
@@ -206,10 +209,10 @@
       "options": {
         "cwd": "${workspaceRoot}/chapter-06-interact-with-js"
       },
-      "dependsOn": ["Chapter 6: Clean"]
+      "dependsOn": ["Chapter 06: Clean"]
     },
     {
-      "label": "Chapter 7: Clean",
+      "label": "Chapter 07: Clean",
       "type": "shell",
       "command": "rimraf",
       "args": ["src/assets/main.wasm"],
@@ -219,7 +222,7 @@
       }
     },
     {
-      "label": "Chapter 7: Build",
+      "label": "-> Chapter 07: Build",
       "type": "shell",
       "command": "emcc",
       "args": [
@@ -234,7 +237,7 @@
       "options": {
         "cwd": "${workspaceRoot}/chapter-07-cook-the-books"
       },
-      "dependsOn": ["Chapter 7: Clean"]
+      "dependsOn": ["Chapter 07: Clean"]
     },
     {
       "label": "Chapter 10: Clean for LLVM",
@@ -247,10 +250,11 @@
       }
     },
     {
-      "label": "Chapter 10: Build for LLVM",
+      "label": "-> Chapter 10: Build for LLVM",
       "type": "shell",
       "command": "wa",
       "args": [
+        "compile",
         "main.cpp",
         "-o", "main.wasm"
       ],
@@ -267,7 +271,7 @@
       "args": ["*.wasm"],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/chapter-10-advanced-tools/src"
+        "cwd": "${workspaceRoot}/chapter-10-advanced-tools/parallel-wasm/src"
       }
     },
     {
@@ -284,12 +288,12 @@
       ],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/chapter-10-advanced-tools"
+        "cwd": "${workspaceRoot}/chapter-10-advanced-tools/parallel-wasm"
       },
       "dependsOn": ["Chapter 10: Clean for Parallel"]
     },
     {
-      "label": "Chapter 10: Build for Parallel",
+      "label": "-> Chapter 10: Build for Parallel",
       "type": "shell",
       "command": "emcc",
       "args": [
@@ -302,7 +306,7 @@
       ],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/chapter-10-advanced-tools"
+        "cwd": "${workspaceRoot}/chapter-10-advanced-tools/parallel-wasm"
       },
       "dependsOn": ["Chapter 10: Build Add for Parallel"]
     }
