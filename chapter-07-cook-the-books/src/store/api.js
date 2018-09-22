@@ -1,5 +1,9 @@
-// Paste your jsonstore.io endpoint here (no ending slash):
+// Replace [JSONSTORE.IO ENDPOINT]' with your jsonstore.io endpoint below (no ending slash):
+// Make sure you remove the "[" and "]" from the string.
 const API_URL = '[JSONSTORE.IO ENDPOINT]';
+
+// Example:
+// const API_URL = 'https://www.jsonstore.io/ba365164c3806df04e7e6f22321adfe8897b6f17eaa4f9ce6e298f1d123';
 
 /**
  * Wrapper for performing API calls. We don't want to call response.json()
