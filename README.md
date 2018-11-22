@@ -49,7 +49,7 @@ All of the code is organized into folders.
 The code will look like the following:
 ```
 int addTwo(int num) {
- return num + 2;
+    return num + 2;
 }
 ```
 
