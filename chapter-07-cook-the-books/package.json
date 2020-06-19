@@ -4,14 +4,17 @@
   "description": "Example application for Learn WebAssembly",
   "main": "src/index.js",
   "scripts": {
-    "start": "browser-sync start --server \"src\" --files \"src/**\" --single --no-open --port 4000",
-    "setup-api": "node config/setup-api.js",
+    "start:api": "json-server --watch \"config/db.json\" --port 4001",
+    "start:web": "browser-sync start --server \"src\" --files \"src/**\" --single --no-open --port 4000",
+    "start": "concurrently --kill-others \"npm run start:api\" \"npm run start:web\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Mike Rourke",
   "license": "MIT",
   "devDependencies": {
-    "browser-sync": "^2.24.6"
+    "browser-sync": "^2.24.6",
+    "concurrently": "^5.2.0",
+    "json-server": "^0.16.1"
   }
 }
